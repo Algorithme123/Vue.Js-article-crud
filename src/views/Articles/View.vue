@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h3>Articles</h3>
-        <RouterLink to="/articles/new" class="btn btn-primary float-end"> Ajouter Articles </RouterLink>
+        <RouterLink to="/article/add" class="btn btn-primary float-end"> Ajouter Articles </RouterLink>
 
         </div>
 
@@ -64,7 +64,7 @@
   <script>
   import axios from 'axios'
   export default{
-    name: 'articles',
+    name: 'articlesEntities',
     data(){
         return {
             articles:[]
