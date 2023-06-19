@@ -7,6 +7,14 @@ import axios from 'axios';
             <h4>Ajouter Un article</h4>
         </div>  
         <div class="card-body">
+
+            <ul class="alert alert-warning" v-if="Object.keys(this.errorList).length > 0 ">
+                
+                <li class="mb-0 ms-3" v-for="(error,index) in errorList" :key="index">
+                    {{ error }}
+
+                </li>
+            </ul>
             <div class="mb-3">
                 <label for="">code</label>
                 <input type="text" class="form-control" v-model="model.article.code">
@@ -51,6 +59,8 @@ export default {
     data(){
 
         return{
+        errorList : "",
+
             model:{
                 article:{
                     code: "",
@@ -65,6 +75,7 @@ export default {
     },
     methods : {
         saveArticle(){
+            var mythis = this;
             axios.post('http://127.0.0.1:8000/api/articles',this.model.article)
             .then(res=>{
                     
@@ -81,9 +92,13 @@ export default {
             })
             .catch(function (error) {
                 if(error.response){
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
+
+                    if(error.response.status== 422){
+                        mythis.errorList = error.response.data.errors;
+                    }
+                    // console.log(error.response.data);
+                    // console.log(error.response.status);
+                    // console.log(error.response.headers);
 
 
                 }else if(error.request){
