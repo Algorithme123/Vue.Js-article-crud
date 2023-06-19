@@ -40,7 +40,7 @@
                                 <td>{{article.prix}}</td>
                                 <td>{{article.created_at}}</td>
                                 <td>
-                                    <RouterLink to="/" type="button" class="btn btn-success"> Edit</RouterLink>
+                                    <RouterLink :to="{ path:'/articles/' + article.id+'/edit'}" type="button" class="btn btn-success mx-2"> Edit</RouterLink>
                                     <RouterLink to="/" type="button" class="btn btn-danger"> Delete</RouterLink>
                                 </td>
                             </tr>
